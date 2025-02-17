@@ -308,7 +308,7 @@
   <div class="container">
     <div class="row gy-4">
       <!-- First Section (Left Side) -->
-      <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-6 position-relative align-self-start hero-slider-1" data-aos="fade-up" data-aos-delay="100">
         <div class="hero-slider">
           <div class="slide-container">
             <div class="slide">
@@ -359,7 +359,8 @@
         </p>
       </div>
     </div>
-
+<br>
+<br>
     <!-- Second Section (Left Side) -->
     <div class="row gy-4">
       <!-- Second Content Section (Left Side) -->
@@ -379,7 +380,7 @@
       </div>
 
       <!-- Second Image Section (Right Side) -->
-      <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="400">
+      <div class="col-lg-6 position-relative align-self-start hero-slider-2" data-aos="fade-up" data-aos-delay="400">
         <div class="hero-slider">
           <div class="slide-container">
             <div class="slide">
@@ -414,11 +415,12 @@
         </div>
       </div>
     </div>
-
+    <br>
+    <br>
     <!-- Third Section (Left Side) -->
     <div class="row gy-4">
       <!-- Third Image Section (Left Side) -->
-      <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="500">
+      <div class="col-lg-6 position-relative align-self-start hero-slider-3" data-aos="fade-up" data-aos-delay="500">
         <div class="hero-slider">
           <div class="slide-container">
             <div class="slide">
@@ -471,7 +473,48 @@
     </div>
   </div>
 </section><!-- /Services Section -->
-    
+
+<script>
+  function initSlider(sliderClass) {
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(`.${sliderClass} .slide`);
+    const dots = document.querySelectorAll(`.${sliderClass} .dot`);
+
+    if (slides.length === 0) return;
+
+    // Set up dots click events
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(sliderClass, index));
+    });
+
+    showSlide(sliderClass, slideIndex);
+    setInterval(() => {
+      slideIndex++;
+      if (slideIndex >= slides.length) slideIndex = 0;
+      showSlide(sliderClass, slideIndex);
+    }, 5000); // Change slide every 5 seconds
+  }
+
+  function showSlide(sliderClass, n) {
+    const slides = document.querySelectorAll(`.${sliderClass} .slide`);
+    const dots = document.querySelectorAll(`.${sliderClass} .dot`);
+
+    // Hide all slides
+    slides.forEach(slide => slide.style.display = 'none');
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    // Show selected slide
+    slides[n].style.display = 'block';
+    dots[n].classList.add('active');
+  }
+
+  // Initialize sliders when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    initSlider('hero-slider-1');
+    initSlider('hero-slider-2');
+    initSlider('hero-slider-3');
+  });
+</script>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section">
