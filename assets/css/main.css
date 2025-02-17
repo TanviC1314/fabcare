@@ -1947,3 +1947,34 @@ section,
   transform: scale(1.2);
   box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
+
+/* Unique classes for the new hero slider */
+.hero-slider-hero .slide,
+.hero-slider-1 .slide,
+.hero-slider-2 .slide,
+.hero-slider-3 .slide {
+  display: none;
+}
+
+.hero-slider-hero .slide:first-child,
+.hero-slider-1 .slide:first-child,
+.hero-slider-2 .slide:first-child,
+.hero-slider-3 .slide:first-child {
+  display: block;
+}
+
+.hero-slider-hero .dot,
+.hero-slider-1 .dot,
+.hero-slider-2 .dot,
+.hero-slider-3 .dot {
+  cursor: pointer;
+}
+
+.hero-slider-hero .dot.active,
+.hero-slider-1 .dot.active,
+.hero-slider-2 .dot.active,
+.hero-slider-3 .dot.active {
+  background-color: #717171;
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
