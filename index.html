@@ -105,7 +105,7 @@
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="100">
-            <div class="hero-slider">
+            <div class="hero-slider hero-slider-hero">
               <div class="slide-container">
                 <div class="slide">
                   <img src="assets/img/hero-img.png" alt="Slide 1">
@@ -136,45 +136,6 @@
                   <span class="dot"></span>
                 </div>
               </div>
-              <script>
-                let slideIndex = 0;
-                const slides = document.getElementsByClassName("slide");
-                const dots = document.getElementsByClassName("dot");
-
-                // Initialize the slider
-                function initSlider() {
-                  if (slides.length === 0) return;
-
-                  // Set up dots click events
-                  for (let i = 0; i < dots.length; i++) {
-                    dots[i].addEventListener('click', () => showSlide(i));
-                  }
-
-                  showSlide(slideIndex);
-                  setInterval(() => {
-                    slideIndex++;
-                    if (slideIndex >= slides.length) slideIndex = 0;
-                    showSlide(slideIndex);
-                  }, 5000); // Change slide every 5 seconds
-                }
-
-                // Show specific slide
-                function showSlide(n) {
-                  // Hide all slides
-                  for (let i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                    dots[i].classList.remove("active");
-                  }
-
-                  // Show selected slide
-                  slides[n].style.display = "block";
-                  dots[n].classList.add("active");
-                  slideIndex = n;
-                }
-
-                // Initialize when DOM is loaded
-                document.addEventListener('DOMContentLoaded', initSlider);
-              </script>
             </div>
           </div>
         </div>
@@ -510,6 +471,7 @@
 
   // Initialize sliders when DOM is loaded
   document.addEventListener('DOMContentLoaded', () => {
+    initSlider('hero-slider-hero');
     initSlider('hero-slider-1');
     initSlider('hero-slider-2');
     initSlider('hero-slider-3');
