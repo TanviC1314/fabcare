@@ -2000,6 +2000,9 @@ section,
   .hero .btn-get-started,
   .hero .btn-watch-video {
     font-size: 13px;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
   }
 
   .hero .btn-watch-video {
