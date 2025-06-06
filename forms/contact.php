@@ -1,41 +1,38 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+require '../PHPMailer/PHPMailer.php';
+require '../PHPMailer/SMTP.php';
+require '../PHPMailer/Exception.php';
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+$mail = new PHPMailer(true);
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
+try {
+    // SMTP Config
+    $mail->isSMTP();
+    $mail->Host = 'smtp.zoho.in';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'info@sai-corporation.in'; // your Zoho email
+    $mail->Password = 'XdrCxX71sP94'; // your Zoho password or app password
+    $mail->SMTPSecure = 'ssl'; // or 'tls' for port 587
+    $mail->Port = 465;
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
+    // Always send from your verified domain
+    $mail->setFrom('info@sai-corporation.in', 'Sai Corporation');
 
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
+    // Set reply-to to the user's email
+    if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $mail->addReplyTo($_POST['email'], $_POST['name']);
+    }
 
-  echo $contact->send();
+    $mail->addAddress('info@sai-corporation.in'); // Destination (your own inbox)
+    $mail->Subject = $_POST['subject'];
+    $mail->Body = "From: {$_POST['name']}\nEmail: {$_POST['email']}\n\nMessage:\n{$_POST['message']}";
+
+    $mail->send();
+    echo 'OK';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
 ?>
