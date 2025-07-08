@@ -188,7 +188,7 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #5f687b; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #80a6de; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #b30000; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -196,7 +196,7 @@
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #5f687b;  /* The default color of the main navmenu links */
-  --nav-hover-color: #80a6de; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-hover-color: #b30000; /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #5f687b; /* Used for navigation links of the dropdown items in the navigation menu. */
@@ -405,11 +405,14 @@ h6 {
 
 .header .logo {
   line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
 .header .logo img {
   max-height: 36px;
   margin-right: 8px;
+  transition: max-height 0.3s ease;
 }
 
 .header .logo h1 {
@@ -418,6 +421,7 @@ h6 {
   font-weight: 700;
   color: var(--heading-color);
 }
+
 
 .header .btn-getstarted,
 .header .btn-getstarted:focus {
@@ -433,9 +437,22 @@ h6 {
 .header .btn-getstarted:hover,
 .header .btn-getstarted:focus:hover {
   color: var(--contrast-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+  background: #800000;
 }
+@media (max-width: 768px) {
+  .header .logo img {
+    max-height: 60px; /* adjust this value as needed */
+  }
+  
+  .header .logo {
+    order: 1;
+    margin-left: 10px; /* prevent sticking to screen edge */
+  }
 
+  .header .logo h1 {
+    font-size: 24px; /* optional: reduce if space is tight */
+  }
+}
 @media (max-width: 1200px) {
   .header .logo {
     order: 1;
